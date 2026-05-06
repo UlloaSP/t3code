@@ -324,16 +324,13 @@ export const makeDesktopBackendManager = Effect.fn("makeDesktopBackendManager")(
                   ...run,
                   pid: Option.some(pid),
                 }));
-                yield* Ref.update(state, (latest) => ({
-                  ...latest,
-                  restartAttempt: 0,
-                }));
                 yield* events.onStarted({ pid, config });
               }),
             onReady: () =>
               Effect.gen(function* () {
                 yield* Ref.update(state, (latest) => ({
                   ...latest,
+                  restartAttempt: 0,
                   ready: Option.match(latest.active, {
                     onNone: () => latest.ready,
                     onSome: (run) => (run.id === runId ? true : latest.ready),
