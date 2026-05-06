@@ -232,11 +232,11 @@ export const makeDesktopBackendManager = Effect.fn("makeDesktopBackendManager")(
           .exists(config.entryPath)
           .pipe(Effect.orElseSucceed(() => false));
 
+        yield* cancelRestart;
         yield* Ref.update(state, (latest) => ({
           ...latest,
           desiredRunning: true,
           ready: false,
-          restartFiber: Option.none(),
         }));
 
         if (!entryExists) {
