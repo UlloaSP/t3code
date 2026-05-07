@@ -141,8 +141,9 @@ export const layer = Layer.sync(ElectronMenu, () => {
       if (input.template.length === 0) {
         return Effect.void;
       }
-      Electron.Menu.buildFromTemplate([...input.template]).popup({ window: input.window });
-      return Effect.void;
+      return Effect.sync(() => {
+        Electron.Menu.buildFromTemplate([...input.template]).popup({ window: input.window });
+      });
     },
     showContextMenu: (input) =>
       Effect.callback<Option.Option<string>>((resume) => {
