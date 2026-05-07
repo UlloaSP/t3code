@@ -9,8 +9,8 @@ import {
 } from "@t3tools/contracts";
 import { NetService } from "@t3tools/shared/Net";
 import * as NodeServices from "@effect/platform-node/NodeServices";
-import { deriveServerPaths } from "./config.ts";
-import { resolveServerConfig } from "./cli.ts";
+import { deriveServerPaths } from "../config.ts";
+import { resolveServerConfig } from "./config.ts";
 
 const encodeDesktopBootstrap = Schema.encodeEffect(Schema.fromJsonString(DesktopBackendBootstrap));
 
