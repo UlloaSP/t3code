@@ -1,6 +1,6 @@
 import { NetService } from "@t3tools/shared/Net";
 import { parsePersistedServerObservabilitySettings } from "@t3tools/shared/serverSettings";
-import { DesktopBackendBootstrap } from "@t3tools/contracts";
+import { DesktopBackendBootstrap, PortSchema } from "@t3tools/contracts";
 import {
   Config,
   Duration,
@@ -26,8 +26,6 @@ import {
   type StartupPresentation,
 } from "../config.ts";
 import { expandHomePath, resolveBaseDir } from "../os-jank.ts";
-
-export const PortSchema = Schema.Int.check(Schema.isBetween({ minimum: 1, maximum: 65535 }));
 
 export const modeFlag = Flag.choice("mode", RuntimeMode.literals).pipe(
   Flag.withDescription("Runtime mode. `desktop` keeps loopback defaults unless overridden."),
